@@ -1,0 +1,13 @@
+eadb:
+  image: mysql
+  env_file: mysql.env
+  volumes:
+    - eadb:/var/lib/mysql
+eaweb:
+  build: .
+  ports:
+    - "8020:80"
+  volumes:
+    - eacode:/var/www/html
+  links:
+    - eadb
