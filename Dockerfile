@@ -22,6 +22,9 @@ RUN apt-get update \
 
 RUN a2enmod rewrite
 
-RUN git clone https://github.com/TEDICpy/ElAvizor.git $CODE
+RUN git clone https://github.com/TEDICpy/ElAvizor.git $CODE \
+	&& git checkout -b escuelasquecaen origin/escuelasquecaen
+
+ADD phps/* /var/www/html/application/config/
 
 WORKDIR $CODE
