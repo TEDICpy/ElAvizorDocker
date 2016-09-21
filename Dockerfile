@@ -29,7 +29,6 @@ RUN git clone https://github.com/TEDICpy/ElAvizor.git $CODE \
 ADD phps/* /var/www/html/application/config/
 
 # Para colocar conf de php especificas
-RUN mkdir -p /usr/local/etc/php/conf.d/
 ADD customphp.ini /usr/local/etc/php/conf.d/
 
 WORKDIR $CODE
