@@ -4,6 +4,7 @@ MAINTAINER Lu Pa <admin@tedic.org>
 ENV DEBIAN_FRONTEND noninteractive
 ENV CODE /var/www/html
 ENV REPO https://github.com/TEDICpy/ElAvizor.git
+ENV REPOTEMA https://github.com/TEDICpy/elAvizor2015.git
 
 RUN apt-get update \
 	&& apt-get upgrade -y \
@@ -22,12 +23,12 @@ RUN apt-get update \
 	&& a2enmod rewrite
 
 # Descargo el codigo de ea
-RUN git clone https://github.com/TEDICpy/ElAvizor.git $CODE \
+RUN git clone $REPO $CODE \
 	&& git checkout -b escuelasquecaen origin/escuelasquecaen
 
-# Para las traducciones
-WORKDIR $CODE
-RUN git submodule init && git submodule update
+# Para el tema
+WORKDIR $CODE/theme
+RUN git submodule add $REPOTEMA
 
 # Copio las configuraciones
 ADD phps/* /var/www/html/application/config/
@@ -35,3 +36,4 @@ ADD phps/* /var/www/html/application/config/
 # Para colocar conf de php especificas
 ADD customphp.ini /usr/local/etc/php/conf.d/
 
+WORKDIR $CODE
