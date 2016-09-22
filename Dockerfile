@@ -25,10 +25,13 @@ RUN apt-get update \
 RUN git clone https://github.com/TEDICpy/ElAvizor.git $CODE \
 	&& git checkout -b escuelasquecaen origin/escuelasquecaen
 
+# Para las traducciones
+WORKDIR $CODE
+RUN git submodule init && git submodule update
+
 # Copio las configuraciones
 ADD phps/* /var/www/html/application/config/
 
 # Para colocar conf de php especificas
 ADD customphp.ini /usr/local/etc/php/conf.d/
 
-WORKDIR $CODE
