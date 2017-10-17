@@ -1,7 +1,5 @@
 *.env
 *.sql
 *.php
-<<<<<<< HEAD
 *.ini
-=======
->>>>>>> 933b72211083f03fbcb36bb2dfd5c0f97ea4aa32
+*.cnf
