@@ -9,7 +9,6 @@ ENV REPOTEMA https://github.com/TEDICpy/elAvizor2015.git
 RUN apt-get update \
 	&& apt-get upgrade -y \
 	&& apt-get install -y \
-		wget \
 		git \
         	libfreetype6-dev \
         	libjpeg62-turbo-dev \
