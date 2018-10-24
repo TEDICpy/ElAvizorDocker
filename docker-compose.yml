@@ -1,15 +1,30 @@
-eadb:
-  image: mysql:5.6
-  restart: unless-stopped
-  env_file: mysql.env
-  volumes:
-    - eadb:/var/lib/mysql
-eaweb:
-  build: .
-  restart: unless-stopped
-  ports:
-    - "8020:80"
-  volumes:
-    - eacode:/var/www/html
-  links:
-    - eadb
+version: '3'
+
+services:
+  db:
+    image: mysql:5.6
+    restart: on-failure:5
+    env_file: mysql.env
+    volumes:
+      - db:/var/lib/mysql
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure:5
+    ports:
+      - "8070:80"
+    volumes:
+      - code:/var/www/html
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 5m
+      timeout: 10s
+      retries: 3
+    security_opt:
+      - no-new-privileges:true
+volumes:
+  db:
+  code:
