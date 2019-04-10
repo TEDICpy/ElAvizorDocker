@@ -16,6 +16,7 @@ services:
       - "8050:80"
     volumes:
       - code:/var/www/html
+      - ./elAvizor2015:/var/www/html/themes/elAvizor2015
     depends_on:
       - db
     healthcheck:

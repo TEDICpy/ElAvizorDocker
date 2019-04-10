@@ -29,8 +29,8 @@ RUN apt-get update \
 RUN git clone $REPO $CODE
 
 # Para el tema
-WORKDIR $CODE/themes
-RUN git clone $REPOTEMA
+#WORKDIR $CODE/themes
+#RUN git clone $REPOTEMA
 
 # Copio las configuraciones
 ADD phps/* /var/www/html/application/config/
