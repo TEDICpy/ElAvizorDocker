@@ -13,7 +13,7 @@ services:
       dockerfile: Dockerfile
     restart: on-failure:5
     ports:
-      - "8070:80"
+      - "8050:80"
     volumes:
       - code:/var/www/html
     depends_on:

@@ -26,12 +26,11 @@ RUN apt-get update \
 	&& a2enmod rewrite
 
 # Descargo el codigo de ea
-RUN git clone $REPO $CODE \
-	&& git checkout -b escuelasquecaen origin/escuelasquecaen
+RUN git clone $REPO $CODE
 
 # Para el tema
 WORKDIR $CODE/themes
-RUN git submodule add $REPOTEMA
+RUN git clone $REPOTEMA
 
 # Copio las configuraciones
 ADD phps/* /var/www/html/application/config/
